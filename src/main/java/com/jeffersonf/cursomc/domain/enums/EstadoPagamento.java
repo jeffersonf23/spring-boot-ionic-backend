@@ -1,8 +1,5 @@
 package com.jeffersonf.cursomc.domain.enums;
 
-import javax.persistence.Entity;
-
-
 public enum EstadoPagamento {
 
 
