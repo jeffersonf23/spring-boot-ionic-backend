@@ -22,14 +22,15 @@ public class CategoriaResource {
 	private CategoriaService catService;
 
 	@RequestMapping(value="{id}", method=RequestMethod.GET)
-	public ResponseEntity<?> listar(@PathVariable Integer id) {
+	public ResponseEntity<Categoria> listar(@PathVariable Integer id) {
 		
 		Categoria categoria;
 		
-		categoria = catService.buscar(id);
+		categoria = catService.find(id);
 		return ResponseEntity.ok().body(categoria);
 		
 	}
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@RequestBody Categoria obj){
 		obj = catService.insert(obj);
@@ -38,6 +39,12 @@ public class CategoriaResource {
 		return ResponseEntity.created(uri).build();
 	}
 	
-	
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> insert(@RequestBody Categoria obj, @PathVariable Integer id){
+		obj.setId(id);
+		obj = catService.update(obj);
+		return ResponseEntity.noContent().build();
+	}
+
 
 }
