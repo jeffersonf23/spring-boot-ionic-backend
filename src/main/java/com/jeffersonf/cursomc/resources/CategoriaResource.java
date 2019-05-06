@@ -3,6 +3,7 @@ package com.jeffersonf.cursomc.resources;
 import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.info.ProjectInfoProperties.Build;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,5 +47,13 @@ public class CategoriaResource {
 		return ResponseEntity.noContent().build();
 	}
 
+	@RequestMapping(value="{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<?> delete(@PathVariable Integer id) {		
+		catService.delete(id);
+		return ResponseEntity.noContent().build();
+		
+	}
+	
+	
 
 }
