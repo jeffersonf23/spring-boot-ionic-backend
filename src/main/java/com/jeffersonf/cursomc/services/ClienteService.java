@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import com.jeffersonf.cursomc.DTO.ClienteDTO;
 import com.jeffersonf.cursomc.domain.Cliente;
-import com.jeffersonf.cursomc.domain.Cliente;
 import com.jeffersonf.cursomc.repositories.ClienteRepository;
 import com.jeffersonf.cursomc.services.exceptions.DataIntegrityException;
 import com.jeffersonf.cursomc.services.exceptions.ObjectNotFoundException;
