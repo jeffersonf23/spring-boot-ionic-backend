@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.jeffersonf.cursomc.DTO.ClienteDTO;
 import com.jeffersonf.cursomc.DTO.ClienteNewDTO;
@@ -43,6 +44,7 @@ public class ClienteService {
 		
 	}
 
+	@Transactional
 	public Cliente insert(Cliente obj) {
 		obj.setId(null);
 		repo.save(obj);
