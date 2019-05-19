@@ -20,10 +20,10 @@ import com.jeffersonf.cursomc.services.exceptions.ObjectNotFoundException;
 public class CategoriaService {
 
 	@Autowired
-	private CategoriaRepository catRepo;
+	private CategoriaRepository repo;
 	
 	public Categoria find(Integer id) {
-		Optional<Categoria> categoria = catRepo.findById(id);
+		Optional<Categoria> categoria = repo.findById(id);
 		
 		return categoria.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));		
@@ -31,31 +31,31 @@ public class CategoriaService {
 
 	public Categoria insert(Categoria obj) {
 		obj.setId(null);
-		return catRepo.save(obj);
+		return repo.save(obj);
 	}
 	
 	public Categoria update(Categoria obj) {
 		find(obj.getId());
-		return catRepo.save(obj);
+		return repo.save(obj);
 	}
 
 	public void delete(Integer id) {
 		find(id);
 		try {
-			catRepo.deleteById(id);
+			repo.deleteById(id);
 		}catch(DataIntegrityViolationException e){
 			throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos"); 
 		}
 	}
 
 	public List<Categoria> findAll() {
-		return catRepo.findAll();
+		return repo.findAll();
 	}
 	
 	public Page<Categoria> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		
 		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
-		return catRepo.findAll(pageRequest);
+		return repo.findAll(pageRequest);
 	}
 
 	public Categoria fromDTO(CategoriaDTO objDTO) {
